@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Chords Voting</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link href="styles/index.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="voteHolder">
+    <button id="dataButton">Get data</button>
+    
+    <div class="volumeHolder">
+      <l class="volumeHeader">Volume</l>
+      <input id="volumeInput" type="range" min="0" max="1" value="0.5" list="gain-vals" step="0.001" data-action="volume"/>
+    </div>
+    
+    <h1 class="voteHeader">Which chord is more consonant?</h1>
+
+    <div class="buttonsHolder">
+        <img class="playButton" id="playButton1" src="assets/playIcon.svg">
+        <img class="playButton" id="playButton2" src="assets/playIcon.svg">
+    </div>
+
+    <input type="range" min="-1" max="1" step="0.5" value="0" id="voteRange" list="steplist">
+    <datalist id="steplist">
+      <option>-1</option>
+      <option>-0.5</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+  </datalist>
+
+    <div class="voteButtonHolder">
+        <button id="voteButton">Vote!</button>
+        <h1 id="chordsInfo">Chords info after voting</h1>
+    </div>
+  </div>
+
+  <script type="module" src="scripts/index.js"></script>
+</body>
+</html>

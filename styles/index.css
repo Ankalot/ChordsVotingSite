@@ -1,0 +1,131 @@
+body {
+    background-color: #2a2c38;
+}
+
+.voteHolder {
+    margin-top: 50px;
+    font-family: arial;
+    font-size: 1.5rem;
+    height: 100%;
+    width: 100%;
+}
+
+.voteHeader {
+    color: #e2dfed;
+    text-align: center;
+}
+
+.buttonsHolder {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20%;
+}
+
+.playButton {
+    padding: 2px;
+    width: 120px;
+    height: 120px;
+    background-color: #e2dfed;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.playButton:hover {
+    scale: 1.05;
+    background-color: #bab7c3;
+}
+
+.playButton:active {
+    scale: 0.95;
+}
+
+#voteRange {
+    position: relative;
+    margin: 0;
+    margin-top: 100px;
+    left: 40%;
+    width: 20%;
+    scale: 2.0;
+    cursor: pointer;
+    color: #e2dfed;
+}
+
+.voteButtonHolder {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#voteButton {
+    background-color: #e2dfed;
+    padding: 12px 36px 12px 36px;
+    border-radius: 6px;
+    color: black;
+    font-weight: 600;
+    font-size: 2.0rem;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+    outline: none;
+    border: none;
+}
+
+#voteButton:hover {
+    background-color: #bab7c3;
+    scale: 1.05;
+}
+
+#voteButton:active {
+    scale: 0.95;
+}
+
+#chordsInfo {
+    color: #e2dfed;
+    text-align: center;
+    visibility: hidden; /* Make visible after voting */
+}
+
+#dataButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #e2dfed;
+    padding: 6px 18px 6px 18px;
+    border-radius: 6px;
+    color: black;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+    outline: none;
+    border: none;
+}
+
+.dataButton:hover {
+    background-color: #bab7c3;
+    scale: 1.05;
+}
+
+.dataButton:active {
+    scale: 0.95;
+}
+
+.volumeHolder {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.volumeHeader {
+    color: #e2dfed;
+}
