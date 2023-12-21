@@ -152,3 +152,8 @@ function genRandomChord(maxInt, N) {
         }
     };
 })();
+
+
+document.getElementById(dataButton).onclick = () => {
+    window.location.href = "https://ankalot.github.io/ChordsVotingSite/data.html";
+}
