@@ -152,14 +152,3 @@ function genRandomChord(maxInt, N) {
         }
     };
 })();
-
-
-document.getElementById("dataButton").onclick = async () => {
-    const {data, error} = await supabase.from('ChordsComparison').select(); 
-    if (error) {
-        alert(error);
-        return;
-    }
-    localStorage.setItem("data", JSON.stringify(data))
-    window.location.href += '/data';
-}
