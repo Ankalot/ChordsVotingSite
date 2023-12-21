@@ -161,5 +161,5 @@ document.getElementById("dataButton").onclick = async () => {
         return;
     }
     localStorage.setItem("data", JSON.stringify(data))
-    window.location.href = 'ChordsVotingSite/data';
+    window.location.href += '/data';
 }
