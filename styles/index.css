@@ -107,12 +107,12 @@ body {
     border: none;
 }
 
-.dataButton:hover {
+#dataButton:hover {
     background-color: #bab7c3;
     scale: 1.05;
 }
 
-.dataButton:active {
+#dataButton:active {
     scale: 0.95;
 }
 
