@@ -1,6 +1,11 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 
+document.getElementById("dataButton").onclick = () => {
+    window.location.href = "https://ankalot.github.io/ChordsVotingSite/data.html";
+}
+
+
 var audioCtx = new (AudioContext || webkitAudioContext)();
 var currSources = []
 
@@ -152,8 +157,3 @@ function genRandomChord(maxInt, N) {
         }
     };
 })();
-
-
-document.getElementById("dataButton").onclick = () => {
-    window.location.href = "https://ankalot.github.io/ChordsVotingSite/data.html";
-}
