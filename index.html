@@ -22,14 +22,38 @@
         <img class="playButton" id="playButton2" src="assets/playIcon.svg">
     </div>
 
-    <input type="range" min="-1" max="1" step="0.5" value="0" id="voteRange" list="steplist">
-    <datalist id="steplist">
-      <option>-1</option>
-      <option>-0.5</option>
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-  </datalist>
+    <div id="voteRangeHolder">
+      <input type="range" min="-1" max="1" step="0.5" value="0" id="voteRange" list="steplist">
+      <datalist id="steplist">
+        <option>-1</option>
+        <option>-0.5</option>
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+      </datalist>
+    </div>
+    <div id="helpHints">
+      <div class="helpHint">
+        <img src="assets/help.svg">
+        <span class="tooltip-text" id="top">1 is way more consonant than 2</span>
+      </div>
+      <div class="helpHint">
+        <img src="assets/help.svg">
+        <span class="tooltip-text" id="top">1 is slightly more consonant than 2</span>
+      </div>
+      <div class="helpHint">
+        <img src="assets/help.svg">
+        <span class="tooltip-text" id="top">Idk which one is more consonant</span>
+      </div>
+      <div class="helpHint">
+        <img src="assets/help.svg">
+        <span class="tooltip-text" id="top">2 is slightly more consonant than 1</span>
+      </div>
+      <div class="helpHint">
+        <img src="assets/help.svg">
+        <span class="tooltip-text" id="top">2 is way more consonant than 1</span>
+      </div>
+    </div>
 
     <div class="voteButtonHolder">
       <div class="mainButtons">

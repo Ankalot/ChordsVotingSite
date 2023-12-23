@@ -42,12 +42,21 @@ body {
     scale: 0.95;
 }
 
+#voteRangeHolder {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
 #voteRange {
     position: relative;
     margin: 0;
     margin-top: 100px;
-    left: 40%;
-    width: 20%;
+    width: 280px;
     scale: 2.0;
     cursor: pointer;
     color: #e2dfed;
@@ -151,3 +160,28 @@ body {
     color: #9a98d2;
     font-size: 20px;
 }
+
+#helpHints {
+    position: relative;
+    top: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 108px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    color: black;
+    font-size: 16px;
+    background-color: #9ca2c2;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+  }
+
+  .helpHint:hover .tooltip-text {
+    visibility: visible;
+  }
