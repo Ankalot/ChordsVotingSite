@@ -31,6 +31,7 @@ var c4v10_sample = await fetch("assets/piano/C4v10.mp3").then((response) => resp
 var notesSamples = [c3v10_sample, d_3v10_sample, f_3v10_sample, a3v10_sample, c4v10_sample] // 300 cents difference
 
 
+const canVote = [false, false];
 var chord1 = [];
 var chord2 = [];
 
@@ -40,8 +41,10 @@ function playChord(chordNum) {
     var notes;
     if (chordNum == 1) {
         notes = chord1;
+        canVote[0] = true;
     } else {
         notes = chord2;
+        canVote[1] = true
     }
 
     for (const note of notes) {
@@ -153,6 +156,11 @@ playButton2.onmouseup = () => stopPlayChord();
 
 
 voteButton.onclick = async () => {
+    if (!canVote[0] || !canVote[1]) {
+        alert("Listen to the chords before voting!");
+        return;
+    }
+
     voteButton.style.visibility = "hidden";
     voteButton.style.position = "absolute";
 
@@ -185,6 +193,9 @@ function initChords() {
 
 
 refreshButton.onclick = () => {
+    canVote[0] = false;
+    canVote[1] = false;
+
     refreshButton.style.visibility = "hidden";
     refreshButton.style.position = "absolute";
 
