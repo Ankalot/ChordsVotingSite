@@ -177,7 +177,6 @@ function initChords() {
     var N2 = getRandomInt(Math.max(N1-1, 2), Math.min(N1+1, 5));
     chord1=genRandomChord(1000,N1);
     chord2=genRandomChord(1000,N2);
-    console.log(chord1, chord2);
 };
 
 
