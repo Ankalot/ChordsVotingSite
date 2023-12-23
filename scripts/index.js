@@ -143,10 +143,12 @@ const playButton2 = document.getElementById("playButton2");
 
 playButton1.ondragstart = function() {return false};
 playButton1.onmousedown = () => playChord(1);
+playButton1.onmouseleave = () => stopPlayChord();
 playButton1.onmouseup = () => stopPlayChord();
 
 playButton2.ondragstart = function() {return false};
 playButton2.onmousedown = () => playChord(2);
+playButton2.onmouseleave = () => stopPlayChord();
 playButton2.onmouseup = () => stopPlayChord();
 
 
