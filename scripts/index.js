@@ -31,8 +31,18 @@ var c4v10_sample = await fetch("assets/piano/C4v10.mp3").then((response) => resp
 var notesSamples = [c3v10_sample, d_3v10_sample, f_3v10_sample, a3v10_sample, c4v10_sample] // 300 cents difference
 
 
-function playChord(notes) {
+var chord1 = [];
+var chord2 = [];
+
+function playChord(chordNum) {
     audioCtx.resume().then(()=>{});
+
+    var notes;
+    if (chordNum == 1) {
+        notes = chord1;
+    } else {
+        notes = chord2;
+    }
 
     for (const note of notes) {
         const intervalRatio = note/notes[0];
@@ -123,37 +133,68 @@ function genRandomChord(maxInt, N) {
     return chord
 }
 
-(function initChords() {
+
+const refreshButton = document.getElementById("refreshButton");
+const afterVoteInfo = document.getElementById("chordsInfo");
+const voteRange = document.getElementById("voteRange");
+const playButton1 = document.getElementById("playButton1");
+const playButton2 = document.getElementById("playButton2");
+
+
+playButton1.ondragstart = function() {return false};
+playButton1.onmousedown = () => playChord(1);
+playButton1.onmouseup = () => stopPlayChord();
+
+playButton2.ondragstart = function() {return false};
+playButton2.onmousedown = () => playChord(2);
+playButton2.onmouseup = () => stopPlayChord();
+
+
+voteButton.onclick = async () => {
+    voteButton.style.visibility = "hidden";
+    voteButton.style.position = "absolute";
+
+    refreshButton.style.visibility = "visible";
+    refreshButton.style.position = "relative";
+
+    afterVoteInfo.textContent = `(${chord1.join(":")}) VS (${chord2.join(":")})`;
+    afterVoteInfo.style.visibility = "visible";
+
+    var result = voteRange.value
+    if ((chord1.length > chord2.length) || ((chord1.length == chord2.length) && (chord1 > chord2))) {
+        [chord1, chord2] = [chord2, chord1]
+        result = -result
+    }
+    const {error} = await supabase.from('ChordsComparison').insert({"chord1": chord1, "chord2": chord2, "result": result});
+    if (error) {
+        alert(JSON.stringify(error));
+    }
+};
+
+
+function initChords() {
     var N1 = getRandomInt(2, 5);
     var N2 = getRandomInt(Math.max(N1-1, 2), Math.min(N1+1, 5));
-    var chord1=genRandomChord(1000,N1);
-    var chord2=genRandomChord(1000,N2);
+    chord1=genRandomChord(1000,N1);
+    chord2=genRandomChord(1000,N2);
+    console.log(chord1, chord2);
+};
 
-    const playButton1 = document.getElementById("playButton1");
-    playButton1.ondragstart = function() {return false};
-    playButton1.onmousedown = () => playChord(chord1);
-    playButton1.onmouseup = () => stopPlayChord();
-    const playButton2 = document.getElementById("playButton2");
-    playButton2.ondragstart = function() {return false};
-    playButton2.onmousedown = () => playChord(chord2);
-    playButton2.onmouseup = () => stopPlayChord();
 
-    const voteButton = document.getElementById("voteButton");
-    voteButton.onclick = async () => {
-        voteButton.disabled = true;
+refreshButton.onclick = () => {
+    refreshButton.style.visibility = "hidden";
+    refreshButton.style.position = "absolute";
 
-        var afterVoteInfo = document.getElementById("chordsInfo");
-        afterVoteInfo.textContent = `(${chord1.join(":")}) VS (${chord2.join(":")})`;
-        afterVoteInfo.style.visibility = "visible";
+    voteButton.style.visibility = "visible";
+    voteButton.style.position = "relative";
 
-        var result = document.getElementById("voteRange").value
-        if ((chord1.length > chord2.length) || ((chord1.length == chord2.length) && (chord1 > chord2))) {
-            [chord1, chord2] = [chord2, chord1]
-            result = -result
-        }
-        const {error} = await supabase.from('ChordsComparison').insert({"chord1": chord1, "chord2": chord2, "result": result});
-        if (error) {
-            alert(JSON.stringify(error));
-        }
-    };
-})();
+    afterVoteInfo.style.visibility = "hidden";
+    afterVoteInfo.textContent = "";
+
+    voteRange.value = 0;
+
+    initChords();
+};
+
+
+initChords();

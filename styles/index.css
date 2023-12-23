@@ -54,14 +54,14 @@ body {
 }
 
 .voteButtonHolder {
-    margin-top: 100px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#voteButton {
+.mainButton {
     background-color: #e2dfed;
     padding: 12px 36px 12px 36px;
     border-radius: 6px;
@@ -75,13 +75,18 @@ body {
     border: none;
 }
 
-#voteButton:hover {
+.mainButton:hover {
     background-color: #bab7c3;
     scale: 1.05;
 }
 
-#voteButton:active {
+.mainButton:active {
     scale: 0.95;
+}
+
+#refreshButton {
+    position: absolute; /*before voting*/
+    visibility: hidden; /*before voting*/
 }
 
 #chordsInfo {
