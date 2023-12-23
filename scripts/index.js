@@ -163,11 +163,13 @@ voteButton.onclick = async () => {
     afterVoteInfo.style.visibility = "visible";
 
     var result = voteRange.value
+    var chord1ForDb = chord1;
+    var chord2ForDb = chord2;
     if ((chord1.length > chord2.length) || ((chord1.length == chord2.length) && (chord1 > chord2))) {
-        [chord1, chord2] = [chord2, chord1]
+        [chord1ForDb, chord2ForDb] = [chord2ForDb, chord1ForDb]
         result = -result
     }
-    const {error} = await supabase.from('ChordsComparison').insert({"chord1": chord1, "chord2": chord2, "result": result});
+    const {error} = await supabase.from('ChordsComparison').insert({"chord1": chord1ForDb, "chord2": chord2ForDb, "result": result});
     if (error) {
         alert(JSON.stringify(error));
     }
