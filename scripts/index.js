@@ -86,17 +86,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const arrayRange = (start, stop, step) =>
-    Array.from(
-        { length: (stop - start) / step + 1 },
-        (value, index) => start + index * step
-    );
-
-Array.prototype.sample = function() {
-    return this[Math.floor(Math.random()*this.length)];
-};
-
-var gcd = function(a, b) {
+function gcd(a, b) {
     if (!b) {
       return a;
     }
@@ -104,33 +94,36 @@ var gcd = function(a, b) {
     return gcd(b, a % b);
 }
 
+function gcdArr(arr, n) { 
+    let result = arr[0]; 
+    for (let i = 1; i < n; i++) { 
+        result = gcd(arr[i], result); 
+        if (result == 1) { 
+            return 1; 
+        } 
+    } 
+    return result; 
+}
+
 function genRandomChord(maxInt, N) {
     const chord = [];
 
-    var x1 = getRandomInt(2, maxInt);
+    const x1 = getRandomInt(2, maxInt);
     chord.push(x1);
-    var maxRange = Math.min(x1*2-1, maxInt);
+    const maxRange = Math.min(x1*2-1, maxInt);
 
     for (let i = 0; i < N-1; i++) {
-        var possibleNums = arrayRange(chord[chord.length-1], maxRange, 1);
-        const realPossibleNums = []
-        possibleNums.forEach(possibleNum => {
-            var isRealPossibleNum = true;
-            chord.every(xiPrev => {
-                if (gcd(xiPrev, possibleNum) != 1) {
-                    isRealPossibleNum = false;
-                    return false;
-                }
-                return true;
-            });
-            if (isRealPossibleNum) {
-                realPossibleNums.push(possibleNum);
-            }
-        });
-        if (realPossibleNums.length == 0) {
+        const minXi = chord[i]+1;
+        if (minXi > maxRange) {
             return genRandomChord(maxInt, N);
         }
-        chord.push(realPossibleNums.sample());
+        chord.push(getRandomInt(minXi, maxRange))
+    }
+
+    const chordGcd = gcdArr(chord, N);
+
+    for (let i = 0; i < N; i++) {
+        chord[i] = chord[i]/chordGcd;
     }
 
     return chord
